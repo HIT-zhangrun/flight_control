@@ -1,13 +1,5 @@
-/************************************************************************************************
-* 程序版本：V3.0
-* 程序日期：2022-9-6
-* 程序作者：719飞行器实验室：
-*                        张润
-*                        杨晨阳
-*                        张天鹏
-************************************************************************************************/
-#ifndef   _LED_H
-#define   _LED_H
+#ifndef   __LED_H__
+#define   __LED_H__
 
 #include "main.h"
 #include "stdint.h"
@@ -21,6 +13,21 @@
 #define LEDB_H GPIOB->BSRR |= GPIO_Pin_14 //配置LED引脚为 高电平
 #define LEDB_L GPIOB->BRR  |= GPIO_Pin_14 //配置LED引脚为 低电平
 
+typedef __packed struct
+{
+    uint8_t (* func)();
+    uint16_t priority;
+    LED_STATUS_E status;
+} led_list_t;
+
+typedef enum LED_STATUS
+{
+    NORMAL = 0,
+    RED_SLOWLY,
+    GREEN_SLOWLY,
+    RED_QUICKLY,
+    GREEN_QUICKLY,
+} LED_STATUS_E;
 
 void LED_Init(void);
 void LEDR_1(void);

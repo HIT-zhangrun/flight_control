@@ -48,7 +48,7 @@ int fputc(int ch, FILE *f)
 
 int main(void)
 {
-    System_Init();//系统初始化
+    System_Init();
 
     xTaskCreate(Task_Schedule, "task", 1024, NULL, 0, NULL);
 
